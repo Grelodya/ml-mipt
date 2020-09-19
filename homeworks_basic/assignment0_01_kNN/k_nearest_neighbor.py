@@ -97,7 +97,8 @@ class KNearestNeighbor:
             # Do not use np.linalg.norm().                                        #
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-            dists[i] = ((self.X_train[i] - X[i])**2).sum().sqrt()
+            train2 = np.sum(self.X_train**2, axis=1).reshape((1, num_train))
+            dists[i, :] = np.sqrt(np.sum(np.square(X[i])) + train2 - 2*X[i].dot(self.X_train.T))
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
