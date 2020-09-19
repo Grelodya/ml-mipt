@@ -158,7 +158,9 @@ class KNearestNeighbor:
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
             ind = np.argsort(dists)            
-            closest_y = self.y_train[ind[i][:k]]
+            closest_y = []
+            for j in range(k):
+                closest_y.append(self.y_train[ind[i][j]])
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
             #########################################################################
             # TODO:                                                                 #
