@@ -98,7 +98,7 @@ class KNearestNeighbor:
             # Do not use np.linalg.norm().                                        #
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-            dists[i] = np.sqrt(np.sum(X[i]**2, axis=1) + np.sum(self.X_train**2, axis=1).reshape((1, num_train)) - 2*np.dot(X[i], self.X_train.T))
+            dists[i] = np.sqrt(np.sum(self.X_train - X[i])**2, axis=1)
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -172,8 +172,6 @@ class KNearestNeighbor:
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
             counts = np.bincount(closest_y)
-            y_pred[i] = (np.argmax(counts))
-
+            y_pred[i] = np.argmax(counts)
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-        y_pred.astype(int)
         return y_pred
