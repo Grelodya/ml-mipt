@@ -89,7 +89,7 @@ class KNearestNeighbor:
         num_test = X.shape[0]
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
-        train2 = np.sum(self.X_train**2, axis=1).reshape((1, num_train))
+        train2 = 
         for i in range(num_test):
             #######################################################################
             # TODO:                                                               #
@@ -98,7 +98,7 @@ class KNearestNeighbor:
             # Do not use np.linalg.norm().                                        #
             #######################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-            dists[i, :] = np.sqrt(np.sum(np.square(X[i])) + train2 - 2*X[i].dot(self.X_train.T))
+            dists[i] = np.sqrt(np.sum(X[i]**2, axis=1) + np.sum(self.X_train**2, axis=1).reshape((1, num_train)) - 2*np.dot(X[i], self.X_train.T))
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -128,7 +128,7 @@ class KNearestNeighbor:
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         test2 = np.sum(X**2, axis=1).reshape((num_test, 1))
         train2 = np.sum(self.X_train**2, axis=1).reshape((1, num_train))
-        dists = np.sqrt(test2 + train2 - 2*X.dot(self.X_train.T))        
+        dists = np.sqrt(test2 + train2 - 2*np.dot(X, self.X_train.T))        
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
@@ -175,5 +175,5 @@ class KNearestNeighbor:
             y_pred[i] = (np.argmax(counts))
 
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
+        y_pred.astype(int)
         return y_pred
