@@ -169,7 +169,7 @@ class KNearestNeighbor:
             # label.                                                                #
             #########################################################################
             # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-            counts = np.bincount(closest_y)
-            y_pred[i] = np.argmax(counts)
+            v, c = np.unique(closest_y, return_counts=True)
+            y_pred[i] = v[c == c.max()].min()
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return y_pred
