@@ -162,5 +162,4 @@ class KNearestNeighbor:
             counts = np.bincount(closest_y)
             y_pred[i] = np.argmax(counts)
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-
         return y_pred
